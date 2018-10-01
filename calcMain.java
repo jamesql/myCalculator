@@ -306,18 +306,12 @@ public class calcMain implements ActionListener , KeyListener{
 	
 	// This is our keyListener
 	public void KeyListenStart() {
-		
 		// Adds a key listener just like out buttons
 		calcForm.addKeyListener(this);
 		// forms that use key listeners need to be focusable
 		calcForm.setFocusable(true);
 		// allows us yo use shifted keys
 		calcForm.setFocusTraversalKeysEnabled(true);
-		// these are not needed but for some reason they are here
-		// they do the same thing but have no effect
-		calcForm.getContentPane().addKeyListener(this);
-		calcForm.getContentPane().setFocusable(true);
-		calcForm.getContentPane().setFocusTraversalKeysEnabled(true);
 	}
 	
 	// Runs when clear button is clicked
