@@ -11,12 +11,18 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.Window.Type;
+// Imports
 
 // Using ActionListener to group all button listners together so it looks real nice.
 public class calcMain implements ActionListener , KeyListener{
 
+	// Icon of the whole program
+	// This is just an example image you can change the location
+	ImageIcon img = new ImageIcon("C:/User/Documents/Image.png");
+	
 	// Global Current Number (Used for math)
 	int curNum = 0;
 	// Used as secondary global current number for math
@@ -134,6 +140,7 @@ public class calcMain implements ActionListener , KeyListener{
 	private void initialize() {
 		// creates new form
 		calcForm = new JFrame();
+		calcForm.setIconImage(img.getImage());
 		// Sets type to pop up i thought it looked better
 		calcForm.setType(Type.POPUP);
 		// made it not resizeable cause it looks dumb
