@@ -798,6 +798,10 @@ public class calcMain implements ActionListener , KeyListener{
 	@Override
 	public void actionPerformed(ActionEvent thisevent) {
 		
+		// This refocus the window after a button is pressed
+		// this fixes a bug where keylistener breaks after a button is pressed instead of keys
+		calcForm.requestFocusInWindow();
+		
 		// Event triggered for clear button
 		if (thisevent.getSource().equals(clearButton)) {
 			// goes to the clear button method
