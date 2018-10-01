@@ -1,5 +1,5 @@
 // Comes from this package
-package mainpkg;
+package juice;
 
 // Imports
 import java.awt.EventQueue;
@@ -11,7 +11,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-
 import javax.swing.JButton;
 import java.awt.Window.Type;
 
@@ -21,15 +20,22 @@ public class calcMain implements ActionListener , KeyListener{
 	// Global Current Number (Used for math)
 	int curNum = 0;
 	// Used as secondary global current number for math
+	// Holds the second number we use for math
 	int nextNum = 0;
 	
 	// Boolean on nextNum or nah
+	// This states if we are using our first number in equation or second number
+	// if false we are using (1) + 1 = 2 
+	// if true we are using 1 + (1) = 2
 	boolean nnt = false;
 	
 	// Boolean Negative
 	boolean Neg = false; // Not Used
+	// this was added by accident 
+	// the font was causing the bug not code
 	
 	// Button clicks
+	// Not used but could be
 	int button0 = 0;
 	int button1 = 0;
 	int button2 = 0;
@@ -42,6 +48,7 @@ public class calcMain implements ActionListener , KeyListener{
 	int button9 = 0;
 	
 	// Button Values
+	// not used but could be
 	int num0 = 0;
 	int num1 = 1;
 	int num2 = 2;
@@ -55,6 +62,9 @@ public class calcMain implements ActionListener , KeyListener{
 	
 	// Booleans
 	// Used for determining which buttons are pressed
+	// used in equals method to determine faster which button is pressed
+	// instead of checking which button is disabled / clicked
+	// we check these booleans
 	boolean plus = false;
 	boolean minus = false;
 	boolean multiply = false;
@@ -294,11 +304,17 @@ public class calcMain implements ActionListener , KeyListener{
 		// Action Listener Additions
 	}
 	
+	// This is our keyListener
 	public void KeyListenStart() {
 		
+		// Adds a key listener just like out buttons
 		calcForm.addKeyListener(this);
+		// forms that use key listeners need to be focusable
 		calcForm.setFocusable(true);
+		// allows us yo use shifted keys
 		calcForm.setFocusTraversalKeysEnabled(true);
+		// these are not needed but for some reason they are here
+		// they do the same thing but have no effect
 		calcForm.getContentPane().addKeyListener(this);
 		calcForm.getContentPane().setFocusable(true);
 		calcForm.getContentPane().setFocusTraversalKeysEnabled(true);
@@ -784,20 +800,26 @@ public class calcMain implements ActionListener , KeyListener{
 		
 		// Event triggered for clear button
 		if (thisevent.getSource().equals(clearButton)) {
+			// goes to the clear button method
+			// resets calculator
 			buttonClickClear();
 		}
 		
 		// Triggered for zero button
 		if (thisevent.getSource().equals(zeroButton)) {
+			// if we are using the secondary number we goto a seperate method
 			if (nnt) {
+				// goes to b method
 				zeroButtonb();
 			}else {
+				// goes to a method
 			zeroButton();
 			}
 		}
 		
 		// Triggered for one button
 		if (thisevent.getSource().equals(oneButton)) {
+			// if we are using the secondary number we goto a seperate method
 			if (nnt) {
 				oneButtonb();
 			}else {
@@ -806,6 +828,7 @@ public class calcMain implements ActionListener , KeyListener{
 		}
 		// Triggered for 2 button
 		if (thisevent.getSource().equals(twoButton)) {
+			// if we are using the secondary number we goto a seperate method
 			if (nnt) {
 				twoButtonb();
 			}else {
@@ -814,6 +837,7 @@ public class calcMain implements ActionListener , KeyListener{
 		}
 		// Triggered for 3 button
 		if (thisevent.getSource().equals(threeButton)) {
+			// if we are using the secondary number we goto a seperate method
 			if (nnt) {
 				threeButtonb();
 			}else {
@@ -822,6 +846,7 @@ public class calcMain implements ActionListener , KeyListener{
 		}
 		// Triggered for 4 button
 		if (thisevent.getSource().equals(fourButton)) {
+			// if we are using the secondary number we goto a seperate method
 			if (nnt) {
 				fourButtonb();
 			}else {
@@ -830,6 +855,7 @@ public class calcMain implements ActionListener , KeyListener{
 		}
 		// Triggered for 5 button
 		if (thisevent.getSource().equals(fiveButton)) {
+			// if we are using the secondary number we goto a seperate method
 			if (nnt) {
 				fiveButtonb();
 			}else {
@@ -838,6 +864,7 @@ public class calcMain implements ActionListener , KeyListener{
 		}
 		// Triggered for 6 button
 		if (thisevent.getSource().equals(sixButton)) {
+			// if we are using the secondary number we goto a seperate method
 			if (nnt) {
 				sixButtonb();
 			}else {
@@ -846,6 +873,7 @@ public class calcMain implements ActionListener , KeyListener{
 		}
 		// Triggered for 7 button
 		if (thisevent.getSource().equals(sevenButton)) {
+			// if we are using the secondary number we goto a seperate method
 			if (nnt) {
 				sevenButtonb();
 			}else {
@@ -854,6 +882,7 @@ public class calcMain implements ActionListener , KeyListener{
 		}
 		// Triggered for 8 button
 		if (thisevent.getSource().equals(eightButton)) {
+			// if we are using the secondary number we goto a seperate method
 			if (nnt) {
 				eightButtonb();
 			}else {
@@ -862,6 +891,7 @@ public class calcMain implements ActionListener , KeyListener{
 		}
 		// Triggered for 9 button
 		if (thisevent.getSource().equals(nineButton)) {
+			// if we are using the secondary number we goto a seperate method
 			if (nnt) {
 				nineButtonb();
 			}else {
@@ -910,97 +940,152 @@ public class calcMain implements ActionListener , KeyListener{
 		
 		int c = thisevent.getKeyCode();
 		// Checks keys
+		// Checks if key pressed is enter
 		if (c == KeyEvent.VK_ENTER) {
+			// presses equal button
 			equals();
 		}
+		// checks if the key is "c"
+		if (c == KeyEvent.VK_C) {
+			// clicks clear
+			buttonClickClear();
+		}
+		// Checks if key is Equals or + button // enter is used as = so we dont need that key
 		if (c == KeyEvent.VK_EQUALS || c == KeyEvent.VK_PLUS) {
+			// presses plus button
 			PlusButton();
 		}
+		// checks if key is the minus key
 		if (c == KeyEvent.VK_MINUS) {
+			// presses the minus key
 			MinusButton();
 		}
+		// checks if the key is X
 		if (c == KeyEvent.VK_X) {
+			// presses X button
 			MultiplyButton();
 		}
+		// Checks if the key is /
 		if (c == KeyEvent.VK_SLASH) {
+			// presses division button
 			DivisionButton();
 		}
+		// checks if the key is 0
 		if (c == KeyEvent.VK_0) {
+			// Checks if the next num is enabled
 			if (nnt) {
+				// if we are using the secondary number we goto a seperate method
 				zeroButtonb();
 			}else{
+				// else go to the normal method
 				zeroButton();
 			}
 		}
+		// if the 1 key is pressed then trigger
 		if (c == KeyEvent.VK_1) {
+			// checks second num
 			if (nnt) {
+				// if we are using the secondary number we goto a seperate method
 				oneButtonb();
-			}else{
+			}else{ // else goto normal number function
 				oneButton();
 			}
 		}
+		// checks for number 2 is pressed
 		if (c == KeyEvent.VK_2) {
+			// checks if the second num is enabled
 			if (nnt) {
+				// goes to b method
 				twoButtonb();
-			}else{
+			}else{ // else goto a method
 				twoButton();
 			}
 		}
+		// triggers when 3 key is pressed
 		if (c == KeyEvent.VK_3) {
+			// if we are using the secondary number we goto a seperate method
 			if (nnt) {
+				// goes to b method
 				threeButtonb();
 			}else{
+				// goes to a method
 				threeButton();
 			}
 		}
+		// checks if the 4 key is pressed
 		if (c == KeyEvent.VK_4) {
+			// if we are using the secondary number we goto a seperate method
 			if (nnt) {
+				// goes to b method
 				fourButtonb();
 			}else{
+				// goes to a method
 				fourButton();
 			}
 		}
+		// checks if 5 key is pressed
 		if (c == KeyEvent.VK_5) {
+			// if we are using the secondary number we goto a seperate method
 			if (nnt) {
+				// goes to b method
 				fiveButtonb();
 			}else{
+				// goes to a method
 				fiveButton();
 			}
 		}
+		// checks if 6 key is pressed
 		if (c == KeyEvent.VK_6) {
+			// if we are using the secondary number we goto a seperate method
 			if (nnt) {
+				// goes to b method
 				sixButtonb();
 			}else{
+				// goes to a method
 				sixButton();
 			}
 		}
+		// Checks if 7 key is pressed
 		if (c == KeyEvent.VK_7) {
+			// if we are using the secondary number we goto a seperate method
 			if (nnt) {
+				// goes to b method
 				sevenButtonb();
 			}else{
+				// goes to a method
 				sevenButton();
 			}
 		}
+		// checks if 9 key is pressed
 		if (c == KeyEvent.VK_8) {
+			// if we are using the secondary number we goto a seperate method
 			if (nnt) {
+				// goes to b method
 				eightButtonb();
 			}else{
+				// goes to a method
 				eightButton();
 			}
 		}
+		// checks if 9 key is pressed
 		if (c == KeyEvent.VK_9) {
+			// if we are using the secondary number we goto a seperate methoda
 			if (nnt) {
+				// goes to b method
 				nineButtonb();
 			}else{
+				// goes to a method
 				nineButton();
 			}
 		}
 	}
 
+	// Not used because it is not needed
 	@Override
 	public void keyReleased(KeyEvent releasedEvent) {
 	}
 
+	// Is not used because it is not needed
 	@Override
 	public void keyTyped(KeyEvent typeEvent) {
 	}
