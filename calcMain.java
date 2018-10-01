@@ -1,5 +1,5 @@
 // Comes from this package
-package juice;
+package mainpkg;
 
 // Imports
 import java.awt.EventQueue;
@@ -14,6 +14,7 @@ import java.awt.event.KeyListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.Window.Type;
+import java.awt.Toolkit;
 // Imports
 
 // Using ActionListener to group all button listners together so it looks real nice.
@@ -21,7 +22,7 @@ public class calcMain implements ActionListener , KeyListener{
 
 	// Icon of the whole program
 	// This is just an example image you can change the location
-	ImageIcon img = new ImageIcon("C:/User/Documents/Image.png");
+	String imagePath = "C:\\Users\\James\\Documents\\Image.png";
 	
 	// Global Current Number (Used for math)
 	int curNum = 0;
@@ -140,7 +141,7 @@ public class calcMain implements ActionListener , KeyListener{
 	private void initialize() {
 		// creates new form
 		calcForm = new JFrame();
-		calcForm.setIconImage(img.getImage());
+		calcForm.setIconImage(Toolkit.getDefaultToolkit().getImage(imagePath));
 		// Sets type to pop up i thought it looked better
 		calcForm.setType(Type.POPUP);
 		// made it not resizeable cause it looks dumb
