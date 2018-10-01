@@ -9,11 +9,14 @@ import javax.swing.SwingConstants;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
 import javax.swing.JButton;
 import java.awt.Window.Type;
 
 // Using ActionListener to group all button listners together so it looks real nice.
-public class calcMain implements ActionListener{
+public class calcMain implements ActionListener , KeyListener{
 
 	// Global Current Number (Used for math)
 	int curNum = 0;
@@ -287,7 +290,16 @@ public class calcMain implements ActionListener{
 		base2Button.addActionListener(this);
 		base8Button.addActionListener(this);
 		base16Button.addActionListener(this);
+		KeyListenStart();
 		// Action Listener Additions
+	}
+	
+	public void KeyListenStart() {
+		
+		calcForm.addKeyListener(this);
+		calcForm.setFocusable(true);
+		calcForm.setFocusTraversalKeysEnabled(true);
+		
 	}
 	
 	// Runs when clear button is clicked
@@ -888,5 +900,106 @@ public class calcMain implements ActionListener{
 		}
 		
 		
+	}
+
+	@Override
+	public void keyPressed(KeyEvent thisevent) {
+		// Retrieves Key Code from event
+		
+		int c = thisevent.getKeyCode();
+		// Checks keys
+		if (c == KeyEvent.VK_ENTER) {
+			equals();
+		}
+		if (c == KeyEvent.VK_PLUS) {
+			PlusButton();
+		}
+		if (c == KeyEvent.VK_MINUS) {
+			MinusButton();
+		}
+		if (c == KeyEvent.VK_ASTERISK) {
+			MultiplyButton();
+		}
+		if (c == KeyEvent.VK_SLASH) {
+			DivisionButton();
+		}
+		if (c == KeyEvent.VK_0) {
+			if (nnt) {
+				zeroButtonb();
+			}else{
+				zeroButton();
+			}
+		}
+		if (c == KeyEvent.VK_1) {
+			if (nnt) {
+				oneButtonb();
+			}else{
+				oneButton();
+			}
+		}
+		if (c == KeyEvent.VK_2) {
+			if (nnt) {
+				twoButtonb();
+			}else{
+				twoButton();
+			}
+		}
+		if (c == KeyEvent.VK_3) {
+			if (nnt) {
+				threeButtonb();
+			}else{
+				threeButton();
+			}
+		}
+		if (c == KeyEvent.VK_4) {
+			if (nnt) {
+				fourButtonb();
+			}else{
+				fourButton();
+			}
+		}
+		if (c == KeyEvent.VK_5) {
+			if (nnt) {
+				fiveButtonb();
+			}else{
+				fiveButton();
+			}
+		}
+		if (c == KeyEvent.VK_6) {
+			if (nnt) {
+				sixButtonb();
+			}else{
+				sixButton();
+			}
+		}
+		if (c == KeyEvent.VK_7) {
+			if (nnt) {
+				sevenButtonb();
+			}else{
+				sevenButton();
+			}
+		}
+		if (c == KeyEvent.VK_8) {
+			if (nnt) {
+				eightButtonb();
+			}else{
+				eightButton();
+			}
+		}
+		if (c == KeyEvent.VK_9) {
+			if (nnt) {
+				nineButtonb();
+			}else{
+				nineButton();
+			}
+		}
+	}
+
+	@Override
+	public void keyReleased(KeyEvent releasedEvent) {
+	}
+
+	@Override
+	public void keyTyped(KeyEvent typeEvent) {
 	}
 }
