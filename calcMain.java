@@ -299,7 +299,9 @@ public class calcMain implements ActionListener , KeyListener{
 		calcForm.addKeyListener(this);
 		calcForm.setFocusable(true);
 		calcForm.setFocusTraversalKeysEnabled(true);
-		
+		calcForm.getContentPane().addKeyListener(this);
+		calcForm.getContentPane().setFocusable(true);
+		calcForm.getContentPane().setFocusTraversalKeysEnabled(true);
 	}
 	
 	// Runs when clear button is clicked
@@ -911,13 +913,13 @@ public class calcMain implements ActionListener , KeyListener{
 		if (c == KeyEvent.VK_ENTER) {
 			equals();
 		}
-		if (c == KeyEvent.VK_PLUS) {
+		if (c == KeyEvent.VK_EQUALS || c == KeyEvent.VK_PLUS) {
 			PlusButton();
 		}
 		if (c == KeyEvent.VK_MINUS) {
 			MinusButton();
 		}
-		if (c == KeyEvent.VK_ASTERISK) {
+		if (c == KeyEvent.VK_X) {
 			MultiplyButton();
 		}
 		if (c == KeyEvent.VK_SLASH) {
