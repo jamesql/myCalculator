@@ -15,6 +15,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.Window.Type;
 import java.awt.Toolkit;
+import java.awt.Color;
+import java.awt.SystemColor;
 // Imports
 
 // Using ActionListener to group all button listners together so it looks real nice.
@@ -141,6 +143,8 @@ public class calcMain implements ActionListener , KeyListener{
 	private void initialize() {
 		// creates new form
 		calcForm = new JFrame();
+		// Sets background of content plane (do not know if needed yet jusst have it here for now)
+		calcForm.getContentPane().setBackground(SystemColor.inactiveCaption);
 		calcForm.setIconImage(Toolkit.getDefaultToolkit().getImage(imagePath));
 		// Sets type to pop up i thought it looked better
 		calcForm.setType(Type.POPUP);
@@ -154,6 +158,8 @@ public class calcMain implements ActionListener , KeyListener{
 		calcForm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		// Sets absolute layout (null basically anywhere) 
 		calcForm.getContentPane().setLayout(null);
+		// Sets background color
+		resultBox.setBackground(SystemColor.activeCaptionBorder);
 		
 		// Result Box Code
 		resultBox.setEditable(false);
@@ -280,6 +286,7 @@ public class calcMain implements ActionListener , KeyListener{
 		calcForm.getContentPane().add(nineButton);
 		// Sets bounds
 		base2Button.setBounds(10, 61, 89, 31);
+		
 		
 		// Number Buttons
 		
@@ -804,6 +811,17 @@ public class calcMain implements ActionListener , KeyListener{
 		// this fixes a bug where keylistener breaks after a button is pressed instead of keys
 		calcForm.requestFocusInWindow();
 		
+		// This makes it so we can do operations quicker
+		// basically for each method button we click we see if we can do a short cut
+		if (thisevent.getSource().equals(plusButton) || thisevent.getSource().equals(minusButton) || thisevent.getSource().equals(multiButton) || thisevent.getSource().equals(divButton)) {
+			// Sees if we can do some math with 2 numbers
+			if (nnt) {
+				// does that equation and moves on to the next
+				equals();
+			}
+		
+		}
+		
 		// Event triggered for clear button
 		if (thisevent.getSource().equals(clearButton)) {
 			// goes to the clear button method
@@ -946,6 +964,18 @@ public class calcMain implements ActionListener , KeyListener{
 		
 		int c = thisevent.getKeyCode();
 		// Checks keys
+		
+		// This makes it so we can do operations quicker
+		// basically for each method button we click we see if we can do a short cut
+		if (c == KeyEvent.VK_PLUS || c == KeyEvent.VK_EQUALS || c == KeyEvent.VK_MINUS || c == KeyEvent.VK_SLASH || c == KeyEvent.VK_X) {
+			// sees if we have an equation
+			if (nnt) {
+				// does that math and continues cycle
+				equals();
+			}
+		
+		}
+		
 		// Checks if key pressed is enter
 		if (c == KeyEvent.VK_ENTER) {
 			// presses equal button
